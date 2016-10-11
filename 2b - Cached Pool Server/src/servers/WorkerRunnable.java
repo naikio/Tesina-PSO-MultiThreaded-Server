@@ -45,7 +45,7 @@ public class WorkerRunnable implements Runnable {
 			String httpQueryString = tokenizer.nextToken();
 
 			StringBuffer responseBuffer = new StringBuffer();
-			responseBuffer.append("<h1>My Thread-Pooled JAVA Web Server </h1>");
+			responseBuffer.append("<h1>My JAVA Web Server<br>using Executors' <i>Cached Thread Pools</i> </h1>");
 			responseBuffer.append("<h2>This is the HTTP Server Home Page.... </h2><BR>");
 			responseBuffer.append("<b>Request handled by " + Thread.currentThread().getName() + "</b><BR><BR><HR>");
 			responseBuffer.append("<h3>Usage:</h3>");
@@ -83,8 +83,7 @@ public class WorkerRunnable implements Runnable {
 							+ "<h2> Please select a text file to upload </h2>"
 							+ "<form action=\"http://127.0.0.1:9000\" enctype=\"multipart/form-data\""
 							+ "method=\"post\">" + "Browse computer <input name=\"file\" type=\"file\"><br>"
-							+ "<br><input value=\"Upload\" type=\"submit\"></form>"
-							+ "<br><br>Back to <a href=\"http://localhost:9000\">home</a> page"
+							+ "<input value=\"Upload\" type=\"submit\"></form>"
 							+ WorkerRunnable.HTML_END;
 					sendResponse(200, responseString, false);
 
