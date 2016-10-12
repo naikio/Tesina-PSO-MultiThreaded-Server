@@ -6,19 +6,19 @@ import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class CachedThreadPooledServer implements Runnable{
+public class Server implements Runnable{
 
     protected int          serverPort   = 9000;
     protected ServerSocket serverSocket = null;
     protected boolean      isStopped    = false;
     protected Thread       runningThread= null;
     protected ExecutorService threadPool =
-        Executors.newCachedThreadPool();
-    	// A cached pool is initialized. Each request is handled by one thread
+        Executors.newFixedThreadPool(10);
+    	// A pool of n thread is initialized. Each request is handled by one thread
     	// You can see that if you set this value to 1, you won't be able to download multiple files at the same time
     
     // constructor
-    public CachedThreadPooledServer(int port){
+    public Server(int port){
         this.serverPort = port;
     }
 
@@ -78,7 +78,7 @@ public class CachedThreadPooledServer implements Runnable{
     
     public static void main(String[] args) {
     	
-    	CachedThreadPooledServer server = new CachedThreadPooledServer(9000);
+    	Server server = new Server(9000);
     	new Thread(server).start();
 
     	try {

@@ -5,18 +5,18 @@ import java.net.Socket;
 import java.io.IOException;
 import servers.MyThreadPool;
 
-public class ThreadPooledServer implements Runnable{
+public class Server implements Runnable{
 
     protected int          serverPort   = 9000;
     protected ServerSocket serverSocket = null;
     protected boolean      isStopped    = false;
     protected Thread       runningThread= null;
     protected MyThreadPool threadPool = new MyThreadPool(1,1);
-    	// A pool of 20 thread is initialized. Each request is handled by one thread
+    	// A pool of thread is initialized. Each request is handled by one thread
     	// You can see that if you set this value to 1, you won't be able to download multiple files at the same time
     
     // constructor
-    public ThreadPooledServer(int port){
+    public Server(int port){
         this.serverPort = port;
     }
 
@@ -25,7 +25,7 @@ public class ThreadPooledServer implements Runnable{
         synchronized(this){
             this.runningThread = Thread.currentThread();
         }
-        openServerSocket(); //open Socket and start listening on serverPort (9000)
+        openServerSocket();
         while(! isStopped()){
             Socket clientSocket = null;
             try {
@@ -80,7 +80,7 @@ public class ThreadPooledServer implements Runnable{
     
     public static void main(String[] args) {
     	
-    	ThreadPooledServer server = new ThreadPooledServer(9000);
+    	Server server = new Server(9000);
     	new Thread(server).start();
 
     	try {
