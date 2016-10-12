@@ -3,6 +3,7 @@ package servers;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.io.IOException;
+import servers.MyThreadPool;
 
 public class ThreadPooledServer implements Runnable{
 
@@ -10,7 +11,7 @@ public class ThreadPooledServer implements Runnable{
     protected ServerSocket serverSocket = null;
     protected boolean      isStopped    = false;
     protected Thread       runningThread= null;
-    protected MyThreadPool threadPool = new MyThreadPool(100,9);
+    protected MyThreadPool threadPool = new MyThreadPool(1,1);
     	// A pool of 20 thread is initialized. Each request is handled by one thread
     	// You can see that if you set this value to 1, you won't be able to download multiple files at the same time
     
