@@ -51,6 +51,7 @@ public class WorkerRunnable implements Runnable {
 			responseBuffer.append("<h3>Usage:</h3>");
 			responseBuffer.append("<a href=\"http://localhost:9000\">locahost:9000/</a>: The server home page<BR>");
 			responseBuffer.append("<a href=\"http://localhost:9000/img.bmp\">locahost:9000/img.bmp</a>: Get file img.bmp <BR>");
+			responseBuffer.append("<a href=\"http://localhost:9000/bigfile.bin\">locahost:9000/bigfile.bin</a>: Get file bigfile.bin <BR>");
 			responseBuffer.append("<a href=\"http://localhost:9000/upload\">locahost:9000/upload</a>: The server upload page<BR><BR><HR>");
 			responseBuffer.append("<b>The HTTP Client request is ....</b><BR>");
 
@@ -229,6 +230,7 @@ public class WorkerRunnable implements Runnable {
 
 		while ((bytesRead = fin.read(buffer)) != -1) {
 			out.write(buffer, 0, bytesRead);
+			Thread.sleep(1);
 		}
 		fin.close();
 	}
